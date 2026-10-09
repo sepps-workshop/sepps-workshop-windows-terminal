@@ -14,7 +14,7 @@ $source = Join-Path $PSScriptRoot "dist\$file"
 $targetDir = Join-Path $env:LOCALAPPDATA "Microsoft\Windows Terminal\Fragments\SeppsWorkshop"
 
 if (-not (Test-Path -LiteralPath $source)) {
-    Write-Error "Fragment not found at $source. Run 'npm run build' first."
+    Write-Error "Fragment not found at $source. Restore it with 'git restore dist' (or build it: 'npm install', then 'npm run build')."
     exit 1
 }
 

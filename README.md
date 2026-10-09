@@ -25,10 +25,10 @@ cd sepps-workshop-windows-terminal
 
 The script copies one file, a [JSON Fragment Extension](https://learn.microsoft.com/en-us/windows/terminal/json-fragment-extensions), into `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\`. Windows Terminal reads that folder by itself. Your `settings.json` is not touched, and you do not need Node.js: the file is already built.
 
-If PowerShell refuses to run the script because of the execution policy, unblock it first:
+If PowerShell refuses to run the script because of the execution policy, run it once with the policy lifted. This changes no setting:
 
 ```powershell
-Unblock-File .\install.ps1
+powershell -ExecutionPolicy Bypass -File .\install.ps1
 ```
 
 ### Switch it on

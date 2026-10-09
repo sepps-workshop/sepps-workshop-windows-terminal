@@ -60,7 +60,7 @@ After cloning, run `git config core.hooksPath .githooks` to enable the pre-commi
 - **Activation is the user's step.** The fragment adds the scheme; it does not update profiles.
 - **Foundation gaps go upstream.** A value the port needs and cannot find is fixed in `sepps-workshop-design-system`, not approximated here.
 - **Scope.** The terminal's colours only. Shell syntax colours belong to the fish and PowerShell ports, the prompt to the Starship port.
-- **Determinism.** Same tokens in, byte-identical files out. `npm test` fails if `themes/`, `dist/` or `images/` is stale.
+- **Determinism.** Same tokens in, byte-identical files out. `npm test` fails if `themes/`, `dist/` or `images/` is stale. `.gitattributes` keeps `themes/` and `dist/` on LF, so the comparison also holds on a Git for Windows checkout.
 - **Writing.** The product name is written "Sepp’s Workshop" with a typographic apostrophe, the company "sepp.med gmbh". Docs are English, exact where technical, no emoji.
 
 ## Don't

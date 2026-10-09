@@ -102,7 +102,7 @@ test(
       copyFileSync(SCRIPT, join(lonely, "install.ps1"));
       const result = install(join(lonely, "install.ps1"), appData);
       assert.notEqual(result.status, 0);
-      assert.match(result.stdout + result.stderr, /npm run build/);
+      assert.match(result.stdout + result.stderr, /git restore dist/);
       assert.throws(() =>
         readFileSync(join(appData, ...TARGET, FRAGMENT_FILE)),
       );
