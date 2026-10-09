@@ -89,7 +89,7 @@ English, no emoji, exact where technical, relaxed elsewhere. Sections, following
 
 1. Header image, title, badges.
 2. What it is: one dark scheme on sepp.med Darkblue, no variants.
-3. Install: clone and `.\install.ps1`; the `Unblock-File` hint; choosing the scheme under Settings, Color schemes, or per profile; updating with `git pull` and a second run; manual paste from `themes/sepps-workshop.json`; uninstall by deleting the fragment folder. A note that the name carries a typographic apostrophe, with the line to copy for anyone who edits `settings.json` by hand.
+3. Install: clone and `.\install.ps1`; the execution-policy hint (a one-off `powershell -ExecutionPolicy Bypass -File .\install.ps1`; changed in review from the `Unblock-File` hint of `vivid-life-windows-terminal`, which only removes the download mark of a ZIP and cannot lift a `Restricted` policy on a cloned script); choosing the scheme under Settings, Color schemes, or per profile; updating with `git pull` and a second run; manual paste from `themes/sepps-workshop.json`; uninstall by deleting the fragment folder. A note that the name carries a typographic apostrophe, with the line to copy for anyone who edits `settings.json` by hand.
 4. Recommended companions: JetBrains Mono or JetBrainsMono Nerd Font, the fish port for syntax colours, the Starship port for the prompt.
 5. How it is built: the mapping table in words, and the deliberate points (the `purple` slots are Bright Orange, the selection darkens, red is the readable coral and not Racing Red, selected text is drawn white by the terminal).
 6. Contributing: colour problems go to the foundation, mapping mistakes here.
