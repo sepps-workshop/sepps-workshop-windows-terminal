@@ -1,0 +1,14 @@
+{
+  "name": "Sepp’s Workshop",
+  "window": {
+    "applicationTheme": "dark"
+  },
+  "tabRow": {
+    "background": "#0d3174",
+    "unfocusedBackground": "#0d3174"
+  },
+  "tab": {
+    "background": "terminalBackground",
+    "unfocusedBackground": "#0d3174"
+  }
+}

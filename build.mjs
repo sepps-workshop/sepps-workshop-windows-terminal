@@ -1,6 +1,6 @@
 // Reads foundation tokens from @sepps-workshop/design-system, emits the
-// colour scheme (themes/, for manual paste) and the fragment that
-// install.ps1 deploys (dist/), and copies the README images.
+// colour scheme and the window theme (themes/, for manual paste) and the
+// fragment that install.ps1 deploys (dist/), and copies the README images.
 
 import { mkdirSync, writeFileSync, copyFileSync } from "node:fs";
 import { dirname, join } from "node:path";
@@ -9,9 +9,11 @@ import tokens from "@sepps-workshop/design-system";
 
 import {
   buildTheme,
+  buildWindowTheme,
   buildFragment,
   toJson,
   THEME_FILE,
+  WINDOW_THEME_FILE,
   FRAGMENT_FILE,
 } from "./src/theme-template.mjs";
 
@@ -22,6 +24,7 @@ const IMAGES = join(ROOT, "images");
 // Windows Terminal needs for a fragment.
 for (const [dir, file, value] of [
   ["themes", THEME_FILE, buildTheme(tokens)],
+  ["themes", WINDOW_THEME_FILE, buildWindowTheme(tokens)],
   ["dist", FRAGMENT_FILE, buildFragment(tokens)],
 ]) {
   mkdirSync(join(ROOT, dir), { recursive: true });
@@ -39,4 +42,6 @@ for (const image of ["sepps-workshop-header.jpg", "sepp-recruiting.png"]) {
   );
 }
 
-console.log(`Built themes/${THEME_FILE}, dist/${FRAGMENT_FILE} and images/`);
+console.log(
+  `Built themes/${THEME_FILE}, themes/${WINDOW_THEME_FILE}, dist/${FRAGMENT_FILE} and images/`,
+);

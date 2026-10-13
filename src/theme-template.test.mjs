@@ -5,14 +5,17 @@ import { fileURLToPath } from "node:url";
 import tokens from "@sepps-workshop/design-system";
 import {
   buildTheme,
+  buildWindowTheme,
   buildFragment,
   toJson,
   THEME_FILE,
+  WINDOW_THEME_FILE,
   FRAGMENT_FILE,
 } from "./theme-template.mjs";
 
 const read = (path) => readFileSync(new URL(`../${path}`, import.meta.url));
 const scheme = buildTheme(tokens);
+const windowTheme = buildWindowTheme(tokens);
 
 // Windows Terminal key -> foundation ANSI slot.
 const ANSI = {
@@ -78,6 +81,18 @@ test("every colour is a six-digit hex value", () => {
   }
 });
 
+test("the window theme puts the tab row on the chrome colour", () => {
+  // https://learn.microsoft.com/en-us/windows/terminal/customize-settings/themes
+  // deepEqual pins the key set too: the terminal ignores an unknown key.
+  const chrome = tokens.surface.bg_chrome;
+  assert.deepEqual(windowTheme, {
+    name: tokens.meta.name,
+    window: { applicationTheme: "dark" },
+    tabRow: { background: chrome, unfocusedBackground: chrome },
+    tab: { background: "terminalBackground", unfocusedBackground: chrome },
+  });
+});
+
 test("the fragment holds the one scheme and nothing else", () => {
   assert.deepEqual(buildFragment(tokens), { schemes: [scheme] });
 });
@@ -104,6 +119,11 @@ test("the committed files are what the build produces", () => {
   assert.equal(
     read(`themes/${THEME_FILE}`).toString("utf8"),
     toJson(scheme),
+    `themes/ ${stale}`,
+  );
+  assert.equal(
+    read(`themes/${WINDOW_THEME_FILE}`).toString("utf8"),
+    toJson(windowTheme),
     `themes/ ${stale}`,
   );
   const fragment = read(`dist/${FRAGMENT_FILE}`);

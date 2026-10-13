@@ -1,6 +1,6 @@
 # sepps-workshop-windows-terminal
 
-Windows Terminal port of the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system). Node.js + ESM. Reads tokens from `@sepps-workshop/design-system`; emits one colour scheme to `themes/` and one fragment to `dist/`. One scheme, no variants.
+Windows Terminal port of the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system). Node.js + ESM. Reads tokens from `@sepps-workshop/design-system`; emits one colour scheme and one window theme to `themes/` and one fragment to `dist/`. One scheme, no variants.
 
 ## Key Config Files
 
@@ -16,14 +16,14 @@ Windows Terminal port of the [Sepp’s Workshop design system](https://github.co
 | `.github/workflows/claude.yml`             | Responds to `@claude` mentions in issues, PRs, and review comments                      |
 | `.gitignore`                               | Git ignore patterns                                                                     |
 | `.prettierignore`                          | Paths Prettier must skip: generated `themes/`, `dist/` and `images/`                    |
-| `build.mjs`                                | Reads foundation tokens, emits the scheme and the fragment, copies the README images    |
+| `build.mjs`                                | Reads tokens, emits the scheme, the window theme and the fragment, copies the images    |
 | `package.json`                             | npm scripts (`build`, `test`, `format`) and the design-system devDependency             |
 | `scripts/sync-config-table.sh`             | Keeps this table in sync with the filesystem (called by pre-commit)                     |
 
 ## Commands
 
 - `npm install` — fetch deps (foundation tokens, prettier)
-- `npm run build` — read tokens, emit `themes/sepps-workshop.json`, `dist/sepps-workshop-windows-terminal.json` and `images/`
+- `npm run build` — read tokens, emit `themes/sepps-workshop.json`, `themes/sepps-workshop-window-theme.json`, `dist/sepps-workshop-windows-terminal.json` and `images/`
 - `npm test` — template tests, then an integration test that runs `install.ps1` with a real Windows PowerShell
 - `npm run format` — run Prettier on the project
 - `.\install.ps1` (Windows, PowerShell) — copy the built fragment into Windows Terminal's Fragments folder
@@ -33,11 +33,11 @@ After cloning, run `git config core.hooksPath .githooks` to enable the pre-commi
 ## Structure
 
 - `build.mjs` — top-level build script
-- `src/theme-template.mjs` — pure `buildTheme(tokens)` (the scheme object) and `buildFragment(tokens)` (`{ schemes: [scheme] }`)
+- `src/theme-template.mjs` — pure `buildTheme(tokens)` (the scheme object), `buildWindowTheme(tokens)` (the window theme object) and `buildFragment(tokens)` (`{ schemes: [scheme] }`)
 - `src/theme-template.test.mjs` — unit tests; expected values come from the tokens
 - `src/install.test.mjs` — runs `install.ps1` with a temporary `LOCALAPPDATA`; skipped without Windows PowerShell
 - `install.ps1` — copies `dist/sepps-workshop-windows-terminal.json` to `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\`
-- `themes/` — **generated**, committed: the scheme alone, for manual paste into `settings.json`
+- `themes/` — **generated**, committed: the scheme alone and the window theme, each for manual paste into `settings.json`
 - `dist/` — **generated**, committed: the fragment `install.ps1` deploys, so a clone installs without Node
 - `images/` — **generated**: copied by the build from the foundation's `assets/`
 
@@ -49,10 +49,14 @@ After cloning, run `git config core.hooksPath .githooks` to enable the pre-commi
 
 `docs/superpowers/specs/2026-10-09-windows-terminal-port-design.md` **Read when:** you need the reasoning behind a mapping, the install story, or the Windows Terminal facts it rests on.
 
+`docs/superpowers/specs/2026-10-13-window-theme-design.md` **Read when:** you touch the window theme. It replaces the earlier spec's "out of scope" line on themes.
+
 ## Conventions
 
 - **No colour in this repository.** No hex value and no alpha arithmetic in `src/theme-template.mjs` or `build.mjs`. A test fails on either.
 - **The key set is closed.** A scheme has `name`, `background`, `foreground`, `cursorColor`, `selectionBackground` and the sixteen colours. Windows Terminal ignores an unknown key without an error, so a test pins the exact set.
+- **The window theme is the tab row and nothing else.** `tabRow` and the inactive tabs take `surface.bg_chrome`, the active tab is `terminalBackground`, the application theme is `dark`. A test pins the whole object. It is named `tokens.meta.name`, like the scheme.
+- **The window theme is pasted, not installed.** A fragment holds `profiles` and `schemes` only, so the theme ships as a file under `themes/` and the README says where to paste it. `install.ps1` never edits `settings.json`.
 - **Purple is magenta.** `purple` and `brightPurple` take `ansi.magenta` and `ansi.bright_magenta`.
 - **The selection is flattened for the terminal.** `selectionBackground` takes `overlay.selection.hex_terminal`; the scheme format has no alpha.
 - **The name is `tokens.meta.name`.** It holds a typographic apostrophe (U+2019) and is the identifier users put in `"colorScheme"`. Changing it breaks their settings.
@@ -67,7 +71,7 @@ After cloning, run `git config core.hooksPath .githooks` to enable the pre-commi
 
 - Don't hand-edit `themes/`, `dist/` or `images/`; run `npm run build`.
 - Don't add a second scheme or a variant.
-- Don't add `profiles` to the fragment or a Windows Terminal `themes` object.
+- Don't add `profiles` or `themes` to the fragment. Don't make `install.ps1` write the window theme into `settings.json`.
 - Don't run `install.ps1` against the user's real Windows Terminal without being asked; the test uses a temporary folder.
 - Don't commit secrets. Don't use `--force`.
 

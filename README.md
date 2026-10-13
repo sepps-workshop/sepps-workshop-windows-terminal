@@ -9,7 +9,7 @@
   <img src="https://img.shields.io/badge/license-MIT-b2b2b2" alt="MIT license" />
 </p>
 
-One dark colour scheme for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), built on sepp.med Darkblue with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure: this is the one scheme.
+One dark colour scheme for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), built on sepp.med Darkblue with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure: this is the one scheme. A small window theme comes with it and puts the tab row on Darkblue too.
 
 The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its background. All sixteen colours except black are checked against the Darkblue background.
 
@@ -23,7 +23,7 @@ cd sepps-workshop-windows-terminal
 .\install.ps1
 ```
 
-The script copies one file, a [JSON Fragment Extension](https://learn.microsoft.com/en-us/windows/terminal/json-fragment-extensions), into `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\`. Windows Terminal reads that folder by itself. Your `settings.json` is not touched, and you do not need Node.js: the file is already built.
+The script copies one file, a [JSON Fragment Extension](https://learn.microsoft.com/en-us/windows/terminal/json-fragment-extensions), into `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\`. Windows Terminal reads that folder by itself. The script does not touch your `settings.json`, and you do not need Node.js: the file is already built.
 
 If PowerShell refuses to run the script because of the execution policy, run it once with the policy lifted. This changes no setting:
 
@@ -41,6 +41,21 @@ If you would rather edit `settings.json`, copy this line: the apostrophe in the 
 "colorScheme": "Sepp’s Workshop"
 ```
 
+### Colour the tab row
+
+A colour scheme stops at the edge of the pane. The tab row, which is also the title bar, belongs to a window theme, and Windows Terminal reads window themes from `settings.json` only: a fragment cannot carry one. So this step is by hand, and optional.
+
+Open `settings.json` (**Settings**, **Open JSON file**). Paste the content of [`themes/sepps-workshop-window-theme.json`](./themes/sepps-workshop-window-theme.json) into the `"themes"` array; add the array if the file has none. Then select the theme, on the top level of the file:
+
+```jsonc
+"theme": "Sepp’s Workshop",
+"themes": [
+  // the content of themes/sepps-workshop-window-theme.json
+]
+```
+
+The tab row is Darkblue now, whether the window has the focus or not. The active tab takes the background of its pane and runs into it; the other tabs sink into the row. The theme applies to the whole window, also to tabs that use another colour scheme.
+
 ### Update
 
 ```powershell
@@ -48,13 +63,15 @@ git pull
 .\install.ps1
 ```
 
+If you pasted the window theme, compare it with the file after an update; the script does not change what you pasted.
+
 ### Manual install
 
 No script? Open [`themes/sepps-workshop.json`](./themes/sepps-workshop.json) and paste its content into the `"schemes"` array of your `settings.json` (**Settings**, **Open JSON file**).
 
 ### Uninstall
 
-Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\` and restart Windows Terminal.
+Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\Fragments\SeppsWorkshop\` and restart Windows Terminal. If you added the window theme, set `"theme"` back to `"dark"`, `"light"` or `"system"` and remove the object from `"themes"`.
 
 ## Recommended companions
 
@@ -64,7 +81,7 @@ Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\
 
 ## How it is built
 
-The scheme is generated. The design system says what the terminal background, the text, the accent and the sixteen ANSI colours are; this repository puts them under the keys Windows Terminal reads. It contains no colour value of its own, and a test fails if one appears.
+The scheme is generated. The design system says what the terminal background, the text, the accent and the sixteen ANSI colours are; this repository puts them under the keys Windows Terminal reads. It contains no colour value of its own, and a test fails if one appears. The window theme is generated the same way: its tab row takes the colour the design system gives to the chrome of an editor, the sidebar and status bar of [Sepp’s Workshop for VS Code](https://github.com/sepps-workshop/sepps-workshop-vs-code).
 
 A few things follow from the palette and are deliberate:
 
