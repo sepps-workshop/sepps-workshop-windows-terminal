@@ -76,7 +76,7 @@ Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\
 ## Recommended companions
 
 - **Font**: themes cannot ship fonts. The design system recommends [JetBrains Mono](https://www.jetbrains.com/lp/mono/), or [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) if your prompt shows icons.
-- **Shell colours**: a terminal scheme colours what programs print, not what you type. For syntax highlighting on the command line there is [Sepp’s Workshop for fish](https://github.com/sepps-workshop/sepps-workshop-fish); a PowerShell port is planned.
+- **Shell colours**: a terminal scheme colours what programs print, not what you type. For syntax highlighting on the command line there are [Sepp’s Workshop for fish](https://github.com/sepps-workshop/sepps-workshop-fish) and [Sepp’s Workshop for PowerShell](https://github.com/sepps-workshop/sepps-workshop-powershell).
 - **Prompt**: the scheme does not touch your prompt. For a [Starship](https://starship.rs) prompt in the same colours there is [Sepp’s Workshop for Starship](https://github.com/sepps-workshop/sepps-workshop-starship).
 
 ## How it is built
