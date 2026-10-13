@@ -9,9 +9,9 @@
   <img src="https://img.shields.io/badge/license-MIT-b2b2b2" alt="MIT license" />
 </p>
 
-One dark colour scheme for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), built on sepp.med Darkblue with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure: this is the one scheme. A small window theme comes with it and puts the tab row on Darkblue too.
+One dark colour scheme for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), in the sepp.med colours: a deep blue to read on, a shade darker than the brand's Darkblue, with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure: this is the one scheme. A small window theme comes with it and puts the tab row on Darkblue itself, so the brand colour frames the terminal.
 
-The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its background. All sixteen colours except black are checked against the Darkblue background.
+The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its background. All sixteen colours except black are checked against the background.
 
 ## Install
 
@@ -85,11 +85,12 @@ The scheme is generated. The design system says what the terminal background, th
 
 A few things follow from the palette and are deliberate:
 
+- The background is not Darkblue. Darkblue is too bright to read on for hours, so the design system mixes it with Darkblack for the place where the text is, in a terminal as in an editor, and keeps Darkblue for the frame around it. In Windows Terminal the frame is the tab row; see [Colour the tab row](#colour-the-tab-row).
 - The slots Windows Terminal calls `purple` and `brightPurple` are orange. The sepp.med palette has no magenta, so the design system puts Bright Orange there.
-- Red is a coral red, not the Racing Red of the logo. Racing Red does not reach a readable contrast on Darkblue.
+- Red is a coral red, not the Racing Red of the logo. Racing Red does not reach a readable contrast on a dark blue.
 - A selection darkens the background. Windows Terminal draws the selected text in white on it.
 - Blue on a blue terminal is the hardest colour: blue and cyan differ in lightness as well as in hue.
-- `black` is a true black-grey, darker than the background. It is the anchor for programs that paint black bars; as text on Darkblue it is hard to read, in this scheme as in any dark one.
+- `black` is a true black-grey, darker than the background. It is the anchor for programs that paint black bars; as text on the background it is hard to read, in this scheme as in any dark one.
 
 ## Contributing
 

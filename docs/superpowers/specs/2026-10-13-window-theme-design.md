@@ -1,6 +1,6 @@
 # Window theme for the tab row: design
 
-Date: 2026-10-13. Status: implemented on `feat/window-theme`; not to be merged before the design-system change below.
+Date: 2026-10-13. Status: implemented.
 
 This replaces the "out of scope" line on window and tab themes in `2026-10-09-windows-terminal-port-design.md`.
 
@@ -41,8 +41,6 @@ The user tried it on 2026-10-13 in their own `settings.json` (Darkblue tab row, 
 
 One test compares the whole theme object with its expected values from the tokens, which pins the key set as well. The stale-file test covers the new file. The no-colour test already covers the template.
 
-## Not in this change
+## The pane
 
-The pane still takes `surface.bg_terminal`, which is Darkblue in the design system this port builds on. Moving a standalone terminal to the darker canvas is a change to the design system (`bg_terminal` and the `hex_terminal` overlays, with their gates) and reaches this port through a version bump, without a change to the mapping.
-
-Until then the theme is not worth shipping: pane, active tab, inactive tabs and row are all Darkblue, so the active tab cannot be told from the others. The README wording ("built on sepp.med Darkblue", the active tab running into its pane) is settled with that version bump.
+The pane takes `surface.bg_terminal`, as before. Design system 0.9.0 moved that role from Darkblue to the canvas (`surface.bg`), and the port follows through the version bump, without a change to the mapping. With an earlier design system the pane, the tabs and the row are all Darkblue and the active tab cannot be told from the others, so the theme needs `^0.9.0`.

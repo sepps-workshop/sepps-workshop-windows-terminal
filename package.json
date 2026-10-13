@@ -1,6 +1,6 @@
 {
   "name": "sepps-workshop-windows-terminal",
-  "description": "One dark color scheme for Windows Terminal on sepp.med Darkblue. WCAG AA verified.",
+  "description": "One dark color scheme for Windows Terminal in the sepp.med brand colors. WCAG AA verified.",
   "version": "0.1.0",
   "private": true,
   "license": "MIT",
@@ -33,7 +33,7 @@
     "format:check": "prettier --check ."
   },
   "devDependencies": {
-    "@sepps-workshop/design-system": "^0.7.0",
+    "@sepps-workshop/design-system": "^0.9.0",
     "prettier": "^3.9.9"
   }
 }
