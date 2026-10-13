@@ -9,9 +9,9 @@
   <img src="https://img.shields.io/badge/license-MIT-b2b2b2" alt="MIT license" />
 </p>
 
-One dark colour scheme for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), in the sepp.med colours: a deep blue to read on, a shade darker than the brand's Darkblue, with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure: this is the one scheme. A small window theme comes with it and puts the tab row on Darkblue itself, so the brand colour frames the terminal.
+Hi, I’m Sepp, the small blue robot from [sepp.med](https://www.seppmed.com). This is the colour scheme I built for [Windows Terminal](https://learn.microsoft.com/en-us/windows/terminal/), in the sepp.med colours: a deep blue to read on, a shade darker than the brand's Darkblue, with Sunset yellow as the cursor. It sets the background, the text, the cursor, the selection and the sixteen ANSI colours. There are no variants and nothing to configure. I made one scheme, and I stand by it. A small window theme comes with it and puts the tab row on Darkblue itself, so the brand colour frames the terminal.
 
-The colours come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its background. All sixteen colours except black are checked against the background.
+I do not pick colours by eye. They all come from the [Sepp’s Workshop design system](https://github.com/sepps-workshop/sepps-workshop-design-system), whose build refuses to ship a text colour that fails WCAG AA on its background. All sixteen colours except black are checked against the background.
 
 ## Install
 
@@ -35,7 +35,7 @@ powershell -ExecutionPolicy Bypass -File .\install.ps1
 
 Restart Windows Terminal. Then open **Settings**, **Color schemes**, choose **Sepp’s Workshop** and set it as the default. To use it for one profile only, go to **Settings**, the profile, **Appearance**, **Color scheme**.
 
-If you would rather edit `settings.json`, copy this line: the apostrophe in the name is a typographic one, and a straight one does not match.
+If you would rather edit `settings.json`, copy this line: the apostrophe in the name is a typographic one, and a straight one does not match. Yes, I insisted on the correct apostrophe. Copying is safer than typing.
 
 ```json
 "colorScheme": "Sepp’s Workshop"
@@ -75,6 +75,8 @@ Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\
 
 ## Recommended companions
 
+A terminal scheme is one layer of several. Here is what goes well with it.
+
 - **Font**: themes cannot ship fonts. The design system recommends [JetBrains Mono](https://www.jetbrains.com/lp/mono/), or [JetBrainsMono Nerd Font](https://www.nerdfonts.com/font-downloads) if your prompt shows icons.
 - **Shell colours**: a terminal scheme colours what programs print, not what you type. For syntax highlighting on the command line there are [Sepp’s Workshop for fish](https://github.com/sepps-workshop/sepps-workshop-fish) and [Sepp’s Workshop for PowerShell](https://github.com/sepps-workshop/sepps-workshop-powershell).
 - **Prompt**: the scheme does not touch your prompt. For a [Starship](https://starship.rs) prompt in the same colours there is [Sepp’s Workshop for Starship](https://github.com/sepps-workshop/sepps-workshop-starship).
@@ -83,7 +85,7 @@ Choose another colour scheme, delete `%LOCALAPPDATA%\Microsoft\Windows Terminal\
 
 The scheme is generated. The design system says what the terminal background, the text, the accent and the sixteen ANSI colours are; this repository puts them under the keys Windows Terminal reads. It contains no colour value of its own, and a test fails if one appears. The window theme is generated the same way: its tab row takes the colour the design system gives to the chrome of an editor, the sidebar and status bar of [Sepp’s Workshop for VS Code](https://github.com/sepps-workshop/sepps-workshop-vs-code).
 
-A few things follow from the palette and are deliberate:
+A few things follow from the palette and are deliberate, in case you were about to file them as bugs:
 
 - The background is not Darkblue. Darkblue is too bright to read on for hours, so the design system mixes it with Darkblack for the place where the text is, in a terminal as in an editor, and keeps Darkblue for the frame around it. In Windows Terminal the frame is the tab row; see [Colour the tab row](#colour-the-tab-row).
 - The slots Windows Terminal calls `purple` and `brightPurple` are orange. The sepp.med palette has no magenta, so the design system puts Bright Orange there.
@@ -114,6 +116,8 @@ MIT. See [LICENSE](./LICENSE).
 
 <img align="right" width="150" src="./images/sepp-recruiting.png" alt="Sepp, the blue robot, holding a sign that reads Be you – with us!" />
 
-sepp.med builds and tests software for places where a bug is more than an inconvenience: medical devices, cars, aircraft. We have been doing it since 1980, as a family-run company in the Nuremberg metropolitan region. If you would rather get the contrast ratio right than argue about it, you might like it here.
+My humans at sepp.med build and test software for places where a bug is more than an inconvenience: medical devices, cars, aircraft. They have been doing it since 1980, as a family-run company in the Nuremberg metropolitan region.
 
-Browse the [open positions](https://www.seppmed.com/career/open-positions/), or send a [speculative application](https://www.seppmed.com/career/speculative-application/) if none of them fits yet. Be you – with us.
+Do you care whether a contrast ratio is 4.4 or 4.5? Did you read this README all the way to the bottom? Then you would get on well with them. Have a look at the [open positions](https://www.seppmed.com/career/open-positions/), or send a [speculative application](https://www.seppmed.com/career/speculative-application/) if none of them fits yet. I will keep the workbench tidy until you arrive.
+
+Be you – with us.
