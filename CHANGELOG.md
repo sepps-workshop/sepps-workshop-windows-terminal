@@ -4,6 +4,8 @@ All notable changes to this project will be documented in this file.
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-10-13
+
 ### Added
 
 - The Sepp’s Workshop colour scheme for Windows Terminal: one scheme, generated from the terminal tokens of `@sepps-workshop/design-system`.
