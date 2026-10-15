@@ -1,7 +1,7 @@
 {
   "name": "sepps-workshop-windows-terminal",
   "description": "One dark color scheme for Windows Terminal in the sepp.med brand colors. WCAG AA verified.",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "private": true,
   "license": "MIT",
   "author": {
