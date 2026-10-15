@@ -90,7 +90,7 @@ A few things follow from the palette and are deliberate, in case you were about 
 - The background is not Darkblue. Darkblue is too bright to read on for hours, so the design system mixes it with Darkblack for the place where the text is, in a terminal as in an editor, and keeps Darkblue for the frame around it. In Windows Terminal the frame is the tab row; see [Colour the tab row](#colour-the-tab-row).
 - The slots Windows Terminal calls `purple` and `brightPurple` are orange. The sepp.med palette has no magenta, so the design system puts Bright Orange there.
 - Red is a coral red, not the Racing Red of the logo. Racing Red does not reach a readable contrast on a dark blue.
-- A selection darkens the background. Windows Terminal draws the selected text in white on it.
+- A selection is a light Sunset tint, so you find it at a glance. Windows Terminal draws the selected text in white on it.
 - Blue on a blue terminal is the hardest colour: blue and cyan differ in lightness as well as in hue.
 - `black` is a true black-grey, darker than the background. It is the anchor for programs that paint black bars; as text on the background it is hard to read, in this scheme as in any dark one.
 
